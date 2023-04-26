@@ -33,7 +33,7 @@ jobs:
     - name: jacoco-badge-generator
       uses: cicirello/jacoco-badge-generator@v2.8.1
       with :
-        jacoco-csv-file: pelican/target/site/jacoco-/jacoco.csv
+        jacoco-csv-file: pelican/target/site/jacoco/jacoco.csv
         badges-directory: .github/badges # create the directory if if doesn't already exist.
         generate-branches-badge: true
     - name: Log coverage percentage
