@@ -29,3 +29,11 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pelican/pom.xml
+
+    - name: jacoco-badge-generator
+    uses: cicirello/jacoco-badge-generator@v2.8.1
+    with :
+        jacoco-csv-file: pelican/target/site/jacoco-/jacoco.csv # optional, default is target/site/jacoco/jacoco.csv
+        # The directory for storing badges, relative to the root of the repository.
+        generate-branches-badge: true
+        generate-summary: true
