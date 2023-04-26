@@ -16,13 +16,12 @@ public class DataFrame
     DataFrame(String[] colonne, String[][] ligne){
         this.colonne = colonne;
         this.ligne = new String[ligne.length][];
-        for (int i=0; i< colonne.length; i++){
+        for (int i=0; i < colonne.length; i++){
         	this.ligne[i] = new String[ligne[i].length];
-            for(int j = 0; j<ligne[i].length; j++) {
+            for(int j = 0; j < ligne[i].length; j++) {
             	this.ligne[i][j] = ligne[i][j];
             }
         }
-        print(0,ligne.length,0,colonne.length);
     }
     
     // construction via un fichier csv
@@ -56,7 +55,6 @@ public class DataFrame
 			e.printStackTrace();
 			System.exit(-1);
 		}
-		print(0,ligne.length,0,colonne.length);
     }
     
     private void print(int debut_ligne, int fin_ligne, int debut_colonne, int fin_colonne) {
