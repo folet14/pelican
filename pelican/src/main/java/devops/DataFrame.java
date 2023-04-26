@@ -86,4 +86,23 @@ public class DataFrame
 	public void printColumns(int debut_colonne, int fin_colonne) {
 		print(0, ligne.length, debut_colonne, fin_colonne);
 	}
+
+	public boolean equals(DataFrame df) {
+		if(this.colonne.length != df.colonne.length) {
+			return false;
+		}
+		// vérfie la taille de chaque ligne
+		for(int i = 0; i < ligne.length; i++) {
+			if(this.ligne[i].length != df.ligne[i].length) {
+				return false;
+			}
+			// vérifie chaque élément
+			for(int j = 0; j < colonne.length; j++) {
+				if(!(this.ligne[j][i].equals(df.ligne[j][i]))) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 }
