@@ -10,7 +10,7 @@ Projet dans le cadre du M1 INFO, DEVOPS
 - Affichage du dataframe entier ou des premières/dernières lignes
 - Statistiques possibles sur les dataframes ou directement sur un sous-dataframe (requiert que la partie analysée n'ait que des entiers ou des flottants, mais doivent être passés en String)
 - Fonctions de statistique possibles : Minimum, maximum, moyenne
-
+<pre>
 API : 
 Création : 
 - DataFrame(ArrayList<ArrayList<Object>> table, ArrayList<String> labels) : Construit un dataframe à partir d'une matrice d'objets et d'une liste de labels
@@ -33,7 +33,7 @@ Statistiques :
 - double maxValue(ArrayList<String> colonne) : Récupère la valeur maximale d'un dataframe (si colonne non nulle, travaille uniquement sur les colonnes fournies)
 - double minValue(ArrayList<String> colonne) : Récupère la valeur minimale d'un dataframe (si colonne non nulle, travaille uniquement sur les colonnes fournies)
 - double moyenValue(ArrayList<String> colonne) : Calcule la valeur moyenne d'un dataframe (si colonne non nulle, travaille uniquement sur les colonnes fournies)
-
+</pre>
 -------------CHOIX D'OUTILS-------------
 
 -------------WORKFLOW-------------------
