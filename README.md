@@ -19,20 +19,20 @@ Projet dans le cadre du M1 INFO, DEVOPS
 - DataFrame selectionLignes(ArrayList<Integer> lignes) : Crée un nouveau dataframe à partir d'une liste de numéros de lignes d'un dataframe existant (la première ligne du dataframe porte le numéro 0)
 - DataFrame selectionColonne(ArrayList<String> col) : Crée un nouveau dataframe à partir d'une liste de labels d'un dataframe existant en récupérant les colonnes correspondantes
 
-
+  
 ## Navigation et modification : 
 - ArrayList<Object> getColumn(int index) : Renvoie la colonne correspondant à l'index
 - ArrayList<Object> getLigne(int index) : Renvoie la ligne correspondant à l'index
 - String getLabel(int index) : Renvoie le label correspondant à l'index
 - void addRow(ArrayList<Object> values) : Ajoute une ligne à la fin du dataframe à partir d'une liste d'objets
 
-
+  
 ## Affichage : 
 - void afficherAll() : Affiche le dataframe
 - void afficherPremiereLigne(int ligne) : Affiche (ligne) premières lignes du dataframe
 - void afficherDerniereLigne(int ligne) : Affiche (ligne) dernières lignes du dataframe
 
-
+  
 ## Statistiques : 
 - double maxValue(ArrayList<String> colonne) : Récupère la valeur maximale d'un dataframe (si colonne non nulle, travaille uniquement sur les colonnes fournies)
 - double minValue(ArrayList<String> colonne) : Récupère la valeur minimale d'un dataframe (si colonne non nulle, travaille uniquement sur les colonnes fournies)
