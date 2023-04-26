@@ -18,39 +18,183 @@ public class DataFrame {
 
 	}
 
-	public ArrayList<Object> getColumn(int index) {
+	private ArrayList<Object> getColumn(int index) {
 		ArrayList<Object> column = new ArrayList<>();
 		for (ArrayList<Object> row : data) {
 			column.add(row.get(index));
 		}
 		return column;
 	}
+
 	public ArrayList<Object> getLigne(int index) {
 		return data.get(index);
 	}
+
 	public String getLabel(int index) {
 		return labels.get(index);
 	}
+
 	public void addRow(ArrayList<Object> values) {
-        data.add(values);
-    }
+		data.add(values);
+	}
+
 	public void afficherAll() {
 		System.out.print(" ");
 		for (Object l : labels) {
-			System.out.print(" "+l);
+			System.out.print(" " + l);
 		}
 		System.out.println();
-		int i= 0;
+		int i = 0;
 		for (ArrayList<Object> arrayList : data) {
 			System.out.print(i);
 			for (Object a : arrayList) {
-				System.out.print(" "+a);
+				System.out.print(" " + a);
 			}
 			System.out.println();
 			i++;
 		}
 	}
-	
+
+	public void afficherPremiereLigne(int ligne) {
+		System.out.print(" ");
+		for (Object l : labels) {
+			System.out.print(" " + l);
+		}
+		System.out.println();
+
+		for (int i = 0; i < ligne; i++) {
+			ArrayList<Object> arrayList = data.get(i);
+			System.out.print(i);
+			for (Object a : arrayList) {
+				System.out.print(" " + a);
+			}
+			System.out.println();
+		}
+	}
+
+	public void afficherDerniereLigne(int ligne) {
+		System.out.print(" ");
+		for (Object l : labels) {
+			System.out.print(" " + l);
+		}
+		System.out.println();
+
+		for (int i = data.size() - ligne; i < data.size(); i++) {
+			ArrayList<Object> arrayList = data.get(i);
+			System.out.print(i);
+			for (Object a : arrayList) {
+				System.out.print(" " + a);
+			}
+			System.out.println();
+		}
+	}
+
+	public DataFrame selectionLignes(ArrayList<Integer> lignes) {
+		ArrayList<ArrayList<Object>> dt = new ArrayList<>();
+		for (Integer integer : lignes) {
+			dt.add(data.get(integer));
+		}
+		return new DataFrame(dt, labels);
+	}
+
+	public DataFrame selectionColonne(ArrayList<String> col) {
+		ArrayList<ArrayList<Object>> dt = new ArrayList<>();
+		int count = 0;
+		for (int i = 0; i < labels.size(); i++) {
+			if (col.contains(labels.get(i))) {
+				ArrayList<Object> cl = getColumn(i);
+				for (int j = 0; j < cl.size(); j++) {
+					if (count == 0) {
+						ArrayList<Object> l = new ArrayList<Object>();
+						l.add(cl.get(j));
+						dt.add(l);
+					} else {
+						dt.get(j).add(cl.get(j));
+					}
+				}
+				count++;
+
+			}
+		}
+		return new DataFrame(dt, col);
+	}
+
+	public double maxValue(ArrayList<String> colonne) {
+		double max = 0;
+		if (colonne!= null) {
+			for (int i = 0; i < labels.size(); i++) {
+				if (colonne.contains(labels.get(i))) {
+					for (Object value : getColumn(i)) {
+						if (Double.valueOf((String) value) > max) {
+							max = Double.valueOf((String) value);
+						}
+					}
+				}
+
+			}
+		} else {
+			for (ArrayList<Object> arrayList : data) {
+				for (Object value : arrayList) {
+					if (Double.valueOf((String) value) > max) {
+						max = Double.valueOf((String) value);
+					}
+				}
+			}
+		}
+
+		return max;
+	}
+
+	public double minValue(ArrayList<String> colonne) {
+		double min = Math.pow(10, 10);
+		if (colonne != null) {
+			for (int i = 0; i < labels.size(); i++) {
+				if (colonne.contains(labels.get(i))) {
+					for (Object value : getColumn(i)) {
+						if (Double.valueOf((String) value) < min) {
+							min = Double.valueOf((String) value);
+						}
+					}
+				}
+
+			}
+		} else {
+			for (ArrayList<Object> arrayList : data) {
+				for (Object value : arrayList) {
+					if (Double.valueOf((String) value) < min) {
+						min = Double.valueOf((String) value);
+					}
+				}
+			}
+		}
+
+		return min;
+	}
+
+	public double moyenValue(ArrayList<String> colonne) {
+		double sum = 0;
+		double count = 0;
+		if (colonne!= null) {
+			for (int i = 0; i < labels.size(); i++) {
+				if (colonne.contains(labels.get(i))) {
+					for (Object value : getColumn(i)) {
+						sum += Double.valueOf((String) value);
+						count++;
+					}
+				}
+
+			}
+		} else {
+			for (ArrayList<Object> arrayList : data) {
+				for (Object value : arrayList) {
+					sum += Double.valueOf((String) value);
+					count++;
+				}
+			}
+		}
+
+		return sum/count;
+	}
 
 	public DataFrame fromCSV(String filePath) throws IOException {
 		ArrayList<ArrayList<Object>> table = new ArrayList<>();
@@ -81,7 +225,6 @@ public class DataFrame {
 		reader.close();
 		return new DataFrame(table, labels);
 	}
-
 
 //    String[] colonne;
 //    String[][] ligne;
